@@ -42,6 +42,12 @@
             const userQuestion = "What is your age?";
             const userQuestionEmbedding = await model.embed( userQuestion );
 
+            const questionEmbeddingsArray = await questionEmbeddings.array();
+
+            questionEmbeddingsArray.forEach( question => {
+                console.log( question );
+            });
+
         }
 
         init();
