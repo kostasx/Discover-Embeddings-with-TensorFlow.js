@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://cdn.jsdelivr.net/npm/@tensorflow/tfjs@2.0.0/dist/tf.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@tensorflow-models/toxicity"></script>
+    <style>
+    body {
+            max-width: 960px;
+            margin: 0 auto;
+            padding: 40px;
+            font-size: 1.4rem;
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
+        }
+        
+        textarea {
+            padding: 10px;
+            width: 100%;
+            font-size: 1.4rem;
+            box-sizing: border-box;
+        }
+        
+        button {
+            background: skyblue;
+            border: none;
+            font-size: 1.4rem;
+            padding: 10px 40px;
+            cursor: pointer;
+        }
+        
+        #results {
+            border: 2px solid;
+            padding: 20px;
+            background: lightgray;
+            margin-top: 20px;
+        }
+        
+        #ready {
+            background: tomato;
+            display: inline-block;
+            padding: 10px 40px;
+            transform: translateY(2px);
+        }
+        h1 a {
+            text-decoration: none;
+            font-weight: 100;
+        }
+    </style>
+</head>
+
+<body>
+    <h1>Toxicity Checker with TensorFlow.JS <a href="https://github.com/tensorflow/tfjs-models/tree/master/toxicity">| Model</a></h1>
+    <form>
+        <textarea>Get the hell out of my forum you idiot!</textarea>
+        <button disabled>Check</button>
+        <div id="ready">Model loading...</div>
+    </form>
+    <div id="results"></div>
+    <p>
+        The predictions are an array of objects, one for each toxicity label, that contain the raw probabilities for each input sentence along with the final prediction. The final prediction can be one of three values: true if the probability of a match exceeds
+        the confidence threshold, false if the probability of *not* a match exceeds the confidence threshold, and null if neither probability exceeds the threshold.
+    </p>
+    <script>
+        (async function() {
+
+            const results = document.querySelector("#results");
+
+            // Which toxicity labels to return.
+            const labelsToInclude = [
+                'identity_attack',
+                'insult',
+                'threat',
+                'toxicity',
+                'severe_toxicity',
+                'identity_attack',
+                'sexual_explicit',
+                'obsece'
+            ];
+
+            const model = await window.toxicity.load(0.9);
+
+            // toxicity.load(threshold, labelsToInclude).then(model => {
+            //     model.classify(['you suck']).then(predictions => {...});
+            // });
+
+            document.querySelector("#ready").textContent = "Ready!";
+            document.querySelector("#ready").style.backgroundColor = "yellowgreen";
+            document.querySelector("button").removeAttribute("disabled");
+
+            document.querySelector("form").addEventListener("submit", async(e) => {
+
+                e.preventDefault();
+
+                if (model) {
+
+                    const message = document.querySelector("textarea").value;
+                    const predictions = await model.classify(message);
+
+                    // Check if there are toxic messages in the predictions
+                    // Match is true when the message is toxic
+                    const toxicPredictions = predictions.filter((p) => p.results[0].match);
+
+                    console.log(toxicPredictions);
+
+                    if (toxicPredictions.length) {
+
+                        predictions.map(p => {
+
+                            const label = p.label;
+                            const match = p.results[0].match;
+                            if (match) {
+                                const prediction = p.results[0].probabilities[1];
+                                console.log(label + ': ' + '(' + prediction + ')');
+                                results.innerHTML += `<p>${label} : ${prediction}</p>`
+                            }
+
+                        });
+
+                    }
+
+                }
+            });
+
+        }());
+    </script>
+</body>
+
+</html>

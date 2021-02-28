@@ -1,0 +1,238 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://cdn.jsdelivr.net/npm/@tensorflow/tfjs"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@tensorflow-models/universal-sentence-encoder"></script>
+    <style>
+        body {
+            height: 100vh;
+            display: grid;
+            place-items: center;
+            background: ghostwhite;
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
+            grid-template-rows: auto 1fr;
+        }
+        
+        form {
+            border: 2px solid tomato;
+            padding: 50px 100px;
+            background: white;
+            box-shadow: 0 32px 32px rgb(0, 0, 0, 0.2), 0 0 100px inset rgb(255, 99, 71, 0.5);
+            margin-top: 80px;
+        }
+        
+        form.loaded {
+            box-shadow: 0 32px 32px rgb(0, 0, 0, 0.2), 0 0 100px inset rgb(154, 205, 50, 0.5);
+            border-color: yellowgreen;
+        }
+        
+        input {
+            padding: 10px 20px;
+            font-size: 1.2rem;
+            width: 500px;
+        }
+        
+        ul {
+            font-size: 2rem;
+        }
+        /* LOADER */
+        
+        .loading {
+            position: absolute;
+            top: 60%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            height: 40px;
+            display: flex;
+            align-items: center;
+        }
+        
+        .obj {
+            width: 5px;
+            height: 40px;
+            background: skyblue;
+            margin: 0 3px;
+            border-radius: 10px;
+            animation: loading 0.8s infinite;
+        }
+        
+        .obj:nth-child(2) {
+            animation-delay: 0.1s;
+        }
+        
+        .obj:nth-child(3) {
+            animation-delay: 0.2s;
+        }
+        
+        .obj:nth-child(4) {
+            animation-delay: 0.3s;
+        }
+        
+        .obj:nth-child(5) {
+            animation-delay: 0.4s;
+        }
+        
+        .obj:nth-child(6) {
+            animation-delay: 0.5s;
+        }
+        
+        .obj:nth-child(7) {
+            animation-delay: 0.6s;
+        }
+        
+        .obj:nth-child(8) {
+            animation-delay: 0.7s;
+        }
+        
+        @keyframes loading {
+            0% {
+                height: 0;
+            }
+            50% {
+                height: 40px;
+            }
+            100% {
+                height: 0;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <form>
+        <input type="text" disabled placeholder="Do I need to complete the precourse?">
+    </form>
+    <ul id="output"></ul>
+    <div class="loading">
+        <div class="obj"></div>
+        <div class="obj"></div>
+        <div class="obj"></div>
+        <div class="obj"></div>
+        <div class="obj"></div>
+        <div class="obj"></div>
+        <div class="obj"></div>
+        <div class="obj"></div>
+    </div>
+    <script>
+        console.log( tf.version.tfjs, tf.version );
+
+        // TIP: Enable Cache when testing TF.JS to load sharded model files faster!
+        const sentences = [
+            "How much does your courses cost?",
+            "Why should I pay for your course and not just study in Codeacademy, Coursera etc.?",
+            "Does SHA guarantees me a job?",
+            "What if I need help with my projects?",
+            "Is it really necessary to go through the pre-course?",
+            "Why shouldn't I just study Computer Science in university?",
+            "How do I prove that I belong to the vulnerable group you serve?",
+            "I do belong to a vulnerable group, is my course for free?",
+            "Is English the only language you use?",
+            "What kind of hardware I need?",
+            "What internet speeds should I have?",
+            "Can I use mobile data to participate in your courses?",
+            "I don't own a computer or don't have access to internet.",
+            "What if you fall sick during your studies?",
+            "What we expect from our students?",
+            "Which are the eligibility criteria to be considered vulnerable ?",
+            "What do you mean by vulnerable groups?",
+            "Can I get a scholarship if I live abroad of Greece?",
+            "How many months is the course?",
+            "Is it self-paced or is it performed by fixed hour classes?"
+        ];
+
+        // HELPER FUNCTIONS: Exporting Embeddings to JSON:
+        async function exportEmbeddings() {
+
+            const model = await use.load();
+            const embeddings = await model.embed(sentences);
+            embeddingsArray = embeddings.arraySync();
+            const embeddingsJSON = {
+                sentences: [],
+                embeddings: []
+            }
+            sentences.forEach((sentence, idx) => {
+                embeddingsJSON.sentences.push(sentence);
+                embeddingsJSON.embeddings.push(embeddingsArray[idx]);
+            });
+            console.log(JSON.stringify(embeddingsJSON, null, 2));
+        }
+
+        (async function init() {
+
+            const model           = await use.load();
+            const response        = await fetch("./tfjs-embeddings.json");
+            const data            = await response.json();
+            const embeddingsArray = data.embeddings;
+            const form            = document.querySelector("form");
+            const loader          = document.querySelector(".loading");
+            const input           = document.querySelector("input");
+
+            // Model loaded. Remove loading styles.
+            input.removeAttribute("disabled");
+            form.classList.add("loaded");
+            loader.style.display = "none";
+
+            document.querySelector("form").addEventListener("submit", async (e) => {
+
+                e.preventDefault();
+                if (!model) {
+                    return false;
+                }
+                form.classList.remove("loaded");
+
+                const {
+                    value
+                } = document.querySelector("input");
+                document.querySelector("input").value = "";
+
+                const queryEmbedding = await model.embed([value]);
+                const queryArray     = await queryEmbedding.array();
+
+                let maxScore = -Infinity;
+                let bestMatch;
+                let scores = [];
+
+                for (let i = 0, len = embeddingsArray.length; i < len; i++) {
+                    const score = tf.dot(queryEmbedding.dataSync(), embeddingsArray[i]).dataSync()[0];
+                    scores.push(score);
+                    if (score > maxScore) {
+                        maxScore = score;
+                        bestMatch = i;
+                    }
+                }
+
+                // Getting the 1st, 2nd and 3rd best match:
+                const highest          = Math.max(...scores);
+                const highestIdx       = scores.indexOf(highest);
+                const tempScores       = [...scores]
+                tempScores.splice(highestIdx, 1);
+                const secondHighest    = Math.max(...tempScores);
+                const secondHighestIdx = scores.indexOf(secondHighest);
+                tempScores.splice(tempScores.indexOf(secondHighest), 1);
+                const thirdHighest     = Math.max(...tempScores);
+                const thirdHighestIdx = scores.indexOf(thirdHighest);
+
+                if (maxScore < 0.3) {
+                    document.getElementById("output").textContent = "Sorry!";
+                } else {
+                    document.getElementById("output").innerHTML = `
+                        <li>${sentences[bestMatch]} (Score: ${Math.floor( maxScore * 100 )}%)</li>
+                        <li>${sentences[secondHighestIdx]} (Score: ${Math.floor( secondHighest * 100 )}%)</li>
+                        <li>${sentences[thirdHighestIdx]} (Score: ${Math.floor( thirdHighest * 100 )}%)</li>
+                    `;
+                }
+
+                form.classList.add("loaded");
+
+            });
+
+        }());
+
+    </script>
+</body>
+
+</html>
