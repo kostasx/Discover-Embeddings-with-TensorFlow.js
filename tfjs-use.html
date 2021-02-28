@@ -30,6 +30,15 @@
             const model = await use.load();
             console.log("Model loaded...");
 
+            const questions = [
+                "What is your favorite color?",
+                "How old are you?"
+            ];
+
+            const questionEmbeddings = await model.embed( questions );
+            console.log( questionEmbeddings );
+            console.log( questionEmbeddings.dataSync() ); 
+
         }
 
         init();
