@@ -39,6 +39,9 @@
             console.log( questionEmbeddings );
             console.log( questionEmbeddings.dataSync() ); 
 
+            const userQuestion = "What is your age?";
+            const userQuestionEmbedding = await model.embed( userQuestion );
+
         }
 
         init();
