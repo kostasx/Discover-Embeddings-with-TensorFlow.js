@@ -10,13 +10,18 @@
     <link rel="stylesheet" href="dist/reset.css">
     <link rel="stylesheet" href="dist/reveal.css">
     <link rel="stylesheet" href="dist/theme/black.css" id="theme">
-
     <!-- Theme used for syntax highlighted code -->
     <link rel="stylesheet" href="plugin/highlight/monokai.css" id="highlight-theme">
+
     <!-- Custom Styling -->
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
     <style>
+        * {
+            font-family: 'Poppins', sans-serif !important;
+        }
         body.reveal-viewport {
-            background: linear-gradient( 45deg, rgba(2, 0, 36, 1) 0%, rgba(2, 0, 36, 1) 65%, rgba(66, 80, 102, 1) 100%);
+            background: linear-gradient( 45deg, #542907 0%, rgba(2, 0, 36, 1) 20%,rgba(2, 0, 36, 1) 20%, rgba(2, 0, 36, 1) 65%, rgba(66, 80, 102, 1) 100%);
         }
         
         .reveal h1,
@@ -32,7 +37,9 @@
         a {
             color: #FF6F00;
         }
-        
+        .reveal strong, .reveal b {
+            font-weight: 500;
+        }        
         ul.small {
             font-size: 2rem;
         }
@@ -128,6 +135,7 @@
                     <ul class="xs">
                         <li class="fragment">Rule-based (grammar/syntactic): <strong><span class="fragment">if</span> <em class="fragment">this</em> <span class="fragment">then</span> <em class="fragment">that</em></strong></li>
                         <li class="fragment">Dictionary-based: <strong><em class="fragment">Hello</em> <span class="fragment">&rtrif;</span> <em class="fragment">你好</em></strong></li>
+                        <li class="fragment">Statistical Models</li>
                         <li class="fragment">Limitations: Ambiguation, Mispelled words, Neologisms, Unseen text, Slang, Internet Parlance (OMG, LOL, etc.)</li>
                         <li class="fragment">Labor-intensive / Time-consuming</li>
                         <li class="fragment">Something was missing...</li>
@@ -160,31 +168,33 @@
 
                 <!-- NLP/NLU Pre-ML -->
                 <section>
-                    <p>Before the advent and proliferation of Machine Learning in the early 2000's, the task of processing and understanding natural language using computers was mainly based on Statistical models and <em>Rule-based</em> systems, something closely related to traditional programming.</p>
+                    <p class="small">Before the advent and proliferation of Machine Learning in the early 2000's, the task of processing and understanding natural language using computers was mainly based on Statistical models and <em>Rule-based</em> systems, something closely related to traditional programming.</p>
+                    <br>
                     <code class="fragment"><strong>if</strong> this word <strong>then</strong> that</code>
                 </section>
                 <section>
-                    <p>Basic rules were handcrafted according to the grammar and syntactic rules along with dictionary-based word translations.</p>
+                    <p class="small">Basic rules were handcrafted according to the grammar and syntactic rules along with dictionary-based word translations.</p>
                 </section>
                 <section>
-                    <p>
+                    <p class="small">
                         This approach revealed early on various limitations such as making sense of and dealing with ambiguations, unseen text content, neologisms, slang and Internet parlance.
                     </p>
-                    <p class="fragment">It also proved to be a labor-intensive and time-consuming process.</p>
+                    <p class="fragment small">It also proved to be a labor-intensive and time-consuming process.</p>
                 </section>
                 <!-- ML ERA -->
                 <section>
-                    <p>As Machine Learning and more specifically <strong>Artificial Neural Networks</strong> started showing their amazing capabilities and rapid progress in the early 2000's, computer scientists working in the fields of NLP and NLU started
+                    <p class="small">As Machine Learning and more specifically <strong>Artificial Neural Networks</strong> started showing their amazing capabilities and rapid progress in the early 2000's, computer scientists working in the fields of NLP and NLU started
                         switching their focus to ML-based approaches for dealing with the growing challenges of these fields.</p>
                 </section>
                 <section>
-                    <p>The Machine Learning revolution in the early 2000's was driven by the accumulation of larger and larger datasets, especially of natural language content: from Wikipedia entries to social media posts and from news websites to digital
-                        messages.</p>
-                    <p class="fragment">At the same time the power, speed and architectural advantages of ML algorithms based on Neural Networks were revealing their amazing pattern recognition skills.</p>
+                    <p class="small">The Machine Learning revolution in the early 2000's was driven by the accumulation of larger and larger datasets, especially of natural language content: from Wikipedia entries to social media posts and from news websites to digital messages.</p>
+                    <br>
+                    <p class="fragment small">At the same time the power, speed and architectural advantages of ML algorithms based on Neural Networks were revealing their amazing pattern recognition skills.</p>
                 </section>
                 <section>
-                    <p>Machine Learning was mature enough, highly efficient and provided substantial competitive advantages over traditional (rule-based) methods that dealt with NLP and NLU.</p>
-                    <p class="fragment">It was time for Artificial Intelligence to take the lead in areas such as these.</p>
+                    <p class="small">Machine Learning was mature enough, highly efficient and provided substantial competitive advantages over traditional (rule-based) methods that dealt with NLP and NLU.</p>
+                    <br>
+                    <p class="fragment small">It was time for Artificial Intelligence to take the lead in areas such as these.</p>
                 </section>
             </section>
 
@@ -207,7 +217,7 @@
 				</section>
                 <!-- RANDOM NUMBERS -->
                 <section>
-                    <h6>Assigning a random unique number for each word</h6>
+                    <h6>Assigning a random unique number<br>for each word</h6>
                     <table>
                         <tr>
                             <td>A</td>
@@ -328,8 +338,9 @@
 				</section>
 				<!-- READ MORE -->
                 <section>
-                    <p>In order for computers (these digital, number-crunching machines) to be able to handle words and text, they have to be converted into, well... digits. Numbers.</p>
-                    <p class="fragment">The process of encoding text (characters, words, sentences) into numbers is as old as computers themselves.</p>
+                    <p class="small">In order for computers (these digital, number-crunching machines) to be able to handle words and text, they have to be converted into, well... digits. Numbers.</p>
+                    <br>
+                    <p class="fragment small">The process of encoding text (characters, words, sentences) into numbers is as old as computers themselves.</p>
                 </section>
                 <section>
                     <p>Various methods can be used to convert words into numbers.</p>
@@ -340,18 +351,21 @@
 					</ul>
                 </section>
 				<section>
-					<p>
+					<p class="small">
 						The first two methods (Index-based and One-Hot Encoding) have some serious disadvantages and limitations.
 					</p>
-					<p class="fragment">One-Hot encoding creates huge vectors with size as large as the vocabulary itself. If the vocabulary consists of 100,000 unique words, then we have 100,000 vectors each in the size of 100,000 numbers.</p>
-					<p class="fragment">That's pretty huge.</p>
+                    <br>
+					<p class="fragment small">One-Hot encoding creates huge vectors with size as large as the vocabulary itself. If the vocabulary consists of 100,000 unique words, then we have 100,000 vectors each in the size of 100,000 numbers.</p>
+                    <br>
+					<p class="fragment small">That's pretty huge.</p>
 				</section>
 				<section>
 					<p>Most importantly, both methods lack one significant aspect: <span class="fragment">capturing the <strong>meaning</strong> of these words.</span></p>
 					<p class="fragment">The <strong>semantics</strong> of these words are not reflected in these numbers.</p>
 				</section>
                 <section>
-                    <p>Take for example the following one-hot encoded vectors of two (semantically) similar words:</p>
+                    <p class="small">Take for example the following one-hot encoded vectors of two (semantically) similar words:</p>
+                    <br>
                     <p class="small"><strong>Hotel</strong></p>
                     <table class="border small">
                         <tr>
@@ -382,7 +396,8 @@
                             <td>0</td>
                         </tr>
                     </table>
-                    <p class="fragment">These vector representations do not reflect the semantic similarity of these two words and therefore cannot be used as a similarity metric.</p>
+                    <br>
+                    <p class="fragment small">These vector representations do not reflect the semantic similarity of these two words and therefore cannot be used as a similarity metric.</p>
                 </section>
 
             </section>
@@ -486,17 +501,20 @@
 				</section>
                 <!-- READ MORE -->
 				<section>
-					<p>Word Embeddings provide a new approach, revolutionizing the way words are turned into numbers.</p>
-					<p class="fragment">
+					<p class="small">Word Embeddings provide a new approach, revolutionizing the way words are turned into numbers.</p>
+                    <br>
+					<p class="fragment small">
 						Each word is not only encoded into a unique and light-weight vector, but this numerical representation gets to capture the word's semantics.</p>
-					<p class="fragment">
+                    <br>
+					<p class="fragment small">
 						In simple words, <strong>these numbers encode</strong> (or one might say, reflect) <strong>the word's meaning</strong>.
 					</p>
 				</section>
 				<section>
-					<p><em>&quot;You shall know a word by the company it keeps&quot;<br>J.R.Firth</em></p>
-					<p class="fragment">Word embeddings are created by Machine Learning algorithms that are trained on a large corpus of text.</p>
-					<p class="fragment">During the training, the algorithm learns who to represent each word as a point and place it in the vector space according to the words that surround it.</p>
+					<p><em>&quot;You shall know a word<br>by the company it keeps&quot;<br>J.R.Firth</em></p>
+					<p class="fragment small">Word embeddings are created by Machine Learning algorithms that are trained on a large corpus of text.</p>
+                    <br>
+					<p class="fragment small">During the training, the algorithm learns who to represent each word as a point and place it in the vector space according to the words that surround it.</p>
 				</section>
 				<section>
 					<p>Popular Word Embedding Implementations:</p>
@@ -527,12 +545,13 @@
 					<h2>Sentence &amp; Document Embeddings</h2>
 				</section>
 				<section>
-					<p>Following the success and popularity of Word Embeddings, similar algorithms were applied for both text sentences and documents which yielded equally successful results.</p>
+					<p class="small">Following the success and popularity of Word Embeddings, similar algorithms were applied for both text sentences and documents which yielded equally successful results.</p>
 				</section>
                 <section>
                     <h6>Universal Sentence Encoder</h6>
-                    <p><em>&quot;The Universal Sentence Encoder (Cer et al., 2018) (USE) is a model that encodes text into 512-dimensional embeddings.&quot;</em></p>
-                    <p class="fragment"><em>&quot;These embeddings can then be used as inputs to natural language processing tasks such as <strong>sentiment classification</strong> and <strong>textual similarity analysis</strong>.&quot;</em></p>
+                    <p class="fragment small"><em>&quot;The Universal Sentence Encoder (Cer et al., 2018) (USE) is a model that encodes text into 512-dimensional embeddings.&quot;</em></p>
+                    <br>
+                    <p class="fragment small"><em>&quot;These embeddings can then be used as inputs to natural language processing tasks such as <strong>sentiment classification</strong> and <strong>textual similarity analysis</strong>.&quot;</em></p>
                 </section>
 
                 <section>
@@ -543,7 +562,13 @@
                 </section>
 
                 <section>
-                    <h6><strong>Demo time:</strong><br>Calculating text similarity with USE model.</h6>
+                    <h6>
+                        <strong>Demo time:</strong>
+                    </h6>
+                    <h6 class="fragment">
+                        Calculating text similarity with USE model.
+                    </h6>
+                    <p class="small fragment semi"><a target="_blank" href="https://github.com/kostasx/Discover-Embeddings-with-TensorFlow.js/tree/demo">Code (demo branch)</a></p>
                     <p class="fragment">
 						<strong class="xs">
 							Read More
