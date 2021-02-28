@@ -39,7 +39,7 @@
             console.log( questionEmbeddings );
             console.log( questionEmbeddings.dataSync() ); 
 
-            const userQuestion = "What is your age?";
+            const userQuestion = "Preferred color?";
             const userQuestionEmbedding = await model.embed( userQuestion );
 
             const questionEmbeddingsArray = await questionEmbeddings.array();
