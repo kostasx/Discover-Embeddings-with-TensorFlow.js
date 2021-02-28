@@ -26,7 +26,10 @@
     <h1>Universal Sentence Encoder | TensorFlow.JS</h1>
     <script>
         async function init(){
-            console.log("init()");
+
+            const model = await use.load();
+            console.log("Model loaded...");
+
         }
 
         init();
