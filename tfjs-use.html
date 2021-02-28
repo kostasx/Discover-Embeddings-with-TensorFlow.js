@@ -45,7 +45,8 @@
             const questionEmbeddingsArray = await questionEmbeddings.array();
 
             questionEmbeddingsArray.forEach( question => {
-                console.log( question );
+                const dot = tf.dot( userQuestionEmbedding, question );
+                console.log( dot.dataSync() );
             });
 
         }
