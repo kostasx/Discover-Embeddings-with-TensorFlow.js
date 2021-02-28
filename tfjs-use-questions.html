@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Universal Sentence Encoder | TensorFlow.JS</title>
+</head>
+<body>
+    <main class="loading">
+        <p>
+            <label for="input">Enter your question:</label>
+            <input type="text" id="input">
+            <button id="ask">Ask</button>
+        </p>
+        <p>
+            <label for="question">Add a new question:</label>
+            <input type="text" id="question">
+            <button id="add">Add question</button>
+        </p>
+        <ul id="questions"></ul>
+        <div id="predicted"></div>
+    </main>
+
+    <script src="https://cdn.jsdelivr.net/npm/@tensorflow/tfjs@3.0.0/dist/tf.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@tensorflow-models/universal-sentence-encoder"></script>
+    <style>
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
+            font-size: 1.2rem;
+            background-color: gainsboro;
+        }
+        input {
+            font-size: 1rem;
+            padding: 5px 10px;
+            box-sizing: border-box;
+        }
+        button {
+            text-transform: uppercase;
+            padding: 6px 30px;
+            font-size: 1rem;
+            border: 1px solid yellowgreen;
+            background: yellowgreen;
+        }
+        main {
+            background-color: #fff;
+            max-width: 960px;
+            margin: 0 auto;
+            padding: 20px;
+            box-sizing: border-box;
+            box-shadow: 0 6px 24px rgba(0,0,0,0.2);
+            position: relative;
+        }
+        main.loading::before {
+            content: "Model Loading...";
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: orange;
+            display: grid;
+            place-items: center;
+            box-sizing: border-box;
+        }
+
+    </style>
+    <script>
+        // DOM VARIABLES
+        const main        = document.querySelector("main");
+        const askBtn      = document.querySelector("#ask");
+        const addBtn      = document.querySelector("#add");
+        const questionEl  = document.querySelector("#input");
+        const newQuestion = document.querySelector("#question");
+        const questions   = document.querySelector("#questions");
+        const predicted   = document.querySelector("#predicted");
+
+        const embeddedQuestions = [];
+
+        function getSimilarityScore( embeddingA, embeddingB ){
+            const dotProduct = tf.dot( embeddingA.dataSync(), embeddingB.dataSync() );
+            // const dotProduct = tf.matMul( embeddingA, embeddingB, false, true );
+            return dotProduct.dataSync()[0];
+        }
+
+        async function init(){
+
+            console.log("Loading model...");
+            const model = await use.load();
+            console.log("Model loaded...");
+            main.classList.remove("loading");
+
+            askBtn.addEventListener("click", async ()=>{
+                const question = questionEl.value;
+                const questionEmbedding = await model.embed( question );
+                let highest = -Infinity;
+                let index   = 0;
+                questionEl.value = "";
+                embeddedQuestions.forEach( ( q, idx ) =>{
+                    const score = getSimilarityScore( questionEmbedding, q[1] );
+                    if ( score > highest ){
+                        highest = score;
+                        index   = idx;
+                    }
+                });
+                predicted.innerText = `${embeddedQuestions[index][0]} [Prediction: ${highest}]`;
+            });
+    
+            addBtn.addEventListener("click", async ()=>{
+                console.log("Adding another question to the list...");
+                const question = newQuestion.value;
+                newQuestion.value = "";
+                const sentenceEmbedding = await model.embed( question );
+                embeddedQuestions.push( [ question, sentenceEmbedding ] );
+                console.log( sentenceEmbedding );
+                console.log("Sentence embeddings calculated and added to the embeddings list.");
+                questions.innerHTML += `<li>${question}</li>`;
+            });
+        }
+
+        init();
+
+    </script>
+
+</body>
+</html>
