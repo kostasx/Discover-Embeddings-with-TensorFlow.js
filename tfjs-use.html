@@ -44,10 +44,17 @@
 
             const questionEmbeddingsArray = await questionEmbeddings.array();
 
-            questionEmbeddingsArray.forEach( question => {
+            let highestProbability = -1;
+            let closestIndex;
+            questionEmbeddingsArray.forEach( (question, index) => {
                 const dot = tf.dot( userQuestionEmbedding, question );
-                console.log( dot.dataSync() );
+                if ( highestProbability < dot.dataSync()[0] ){
+                    highestProbability = dot.dataSync()[0];
+                    closestIndex = index;
+                }
             });
+            console.log({ highestProbability, closestIndex });
+            console.log( questions[ closestIndex ] );
 
         }
 
