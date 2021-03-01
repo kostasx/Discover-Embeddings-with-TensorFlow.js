@@ -13,3 +13,7 @@
 ### [FAQ Demo](https://kostasx.github.io/Discover-Embeddings-with-TensorFlow.js/tfjs-embeddings.html) | [Code](https://github.com/kostasx/Discover-Embeddings-with-TensorFlow.js/blob/main/tfjs-embeddings.html)
 
 ### [Toxicity Demo](https://kostasx.github.io/Discover-Embeddings-with-TensorFlow.js/tfjs-toxicity.html) | [Code](https://github.com/kostasx/Discover-Embeddings-with-TensorFlow.js/blob/main/tfjs-toxicity.html)
+
+---
+
+Questions? Comments? Requests? Feel free to open an [Issue on this repo](https://github.com/kostasx/Discover-Embeddings-with-TensorFlow.js/issues).
