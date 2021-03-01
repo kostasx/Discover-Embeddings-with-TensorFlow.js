@@ -4,7 +4,10 @@
 
 ### [Presentation Slides](https://kostasx.github.io/Discover-Embeddings-with-TensorFlow.js/)
 
-### [Video (Soon to be uploaded...)](#)
+### Videos
+
+- [A talk about Machine Learning and TensorFlow in JavaScript with Jason Mayes](https://youtu.be/e9VP1cTJC7I)
+- [A Gentle Introduction to Word and Sentence Embeddings in Machine Learning using JavaScript](https://youtu.be/PA6VcPIcb8w)
 
 ### [Sentence Similarity Demo (Checkout to the demo branch)](https://github.com/kostasx/Discover-Embeddings-with-TensorFlow.js/tree/demo)
 
