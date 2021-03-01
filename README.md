@@ -10,4 +10,6 @@
 
 ### [Question Similarity Demo](https://kostasx.github.io/Discover-Embeddings-with-TensorFlow.js/tfjs-use-questions.html) | [Code](https://github.com/kostasx/Discover-Embeddings-with-TensorFlow.js/blob/main/tfjs-use-questions.html)
 
+### [FAQ Demo](https://kostasx.github.io/Discover-Embeddings-with-TensorFlow.js/tfjs-embeddings.html) | [Code](https://github.com/kostasx/Discover-Embeddings-with-TensorFlow.js/blob/main/tfjs-embeddings.html)
+
 ### [Toxicity Demo](https://kostasx.github.io/Discover-Embeddings-with-TensorFlow.js/tfjs-toxicity.html) | [Code](https://github.com/kostasx/Discover-Embeddings-with-TensorFlow.js/blob/main/tfjs-toxicity.html)
