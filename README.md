@@ -9,13 +9,17 @@
 - [A talk about Machine Learning and TensorFlow in JavaScript with Jason Mayes](https://youtu.be/e9VP1cTJC7I)
 - [A Gentle Introduction to Word and Sentence Embeddings in Machine Learning using JavaScript](https://youtu.be/PA6VcPIcb8w)
 
-### [Sentence Similarity Demo (Checkout to the demo branch)](https://github.com/kostasx/Discover-Embeddings-with-TensorFlow.js/tree/demo)
+### Demos
 
-### [Question Similarity Demo](https://kostasx.github.io/Discover-Embeddings-with-TensorFlow.js/tfjs-use-questions.html) | [Code](https://github.com/kostasx/Discover-Embeddings-with-TensorFlow.js/blob/main/tfjs-use-questions.html)
+- [Word2Vec Demo](https://kostasx.github.io/Word2Vec-in-JavaScript/)
 
-### [FAQ Demo](https://kostasx.github.io/Discover-Embeddings-with-TensorFlow.js/tfjs-embeddings.html) | [Code](https://github.com/kostasx/Discover-Embeddings-with-TensorFlow.js/blob/main/tfjs-embeddings.html)
+- [Sentence Similarity Demo (Checkout to the demo branch)](https://github.com/kostasx/Discover-Embeddings-with-TensorFlow.js/tree/demo)
 
-### [Toxicity Demo](https://kostasx.github.io/Discover-Embeddings-with-TensorFlow.js/tfjs-toxicity.html) | [Code](https://github.com/kostasx/Discover-Embeddings-with-TensorFlow.js/blob/main/tfjs-toxicity.html)
+- [Question Similarity Demo](https://kostasx.github.io/Discover-Embeddings-with-TensorFlow.js/tfjs-use-questions.html) | [Code](https://github.com/kostasx/Discover-Embeddings-with-TensorFlow.js/blob/main/tfjs-use-questions.html)
+
+- [FAQ Demo](https://kostasx.github.io/Discover-Embeddings-with-TensorFlow.js/tfjs-embeddings.html) | [Code](https://github.com/kostasx/Discover-Embeddings-with-TensorFlow.js/blob/main/tfjs-embeddings.html)
+
+- [Toxicity Demo](https://kostasx.github.io/Discover-Embeddings-with-TensorFlow.js/tfjs-toxicity.html) | [Code](https://github.com/kostasx/Discover-Embeddings-with-TensorFlow.js/blob/main/tfjs-toxicity.html)
 
 ---
 
