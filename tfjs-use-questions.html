@@ -5,23 +5,6 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Universal Sentence Encoder | TensorFlow.JS</title>
-</head>
-<body>
-    <main class="loading">
-        <p>
-            <label for="input">Enter your question:</label>
-            <input type="text" id="input">
-            <button id="ask">Ask</button>
-        </p>
-        <p>
-            <label for="question">Add a new question:</label>
-            <input type="text" id="question">
-            <button id="add">Add question</button>
-        </p>
-        <ul id="questions"></ul>
-        <div id="predicted"></div>
-    </main>
-
     <script src="https://cdn.jsdelivr.net/npm/@tensorflow/tfjs@3.0.0/dist/tf.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/@tensorflow-models/universal-sentence-encoder"></script>
     <style>
@@ -64,7 +47,23 @@
             box-sizing: border-box;
         }
 
-    </style>
+    </style>    
+</head>
+<body>
+    <main class="loading">
+        <p>
+            <label for="input">Enter your question:</label>
+            <input type="text" id="input">
+            <button id="ask">Ask</button>
+        </p>
+        <p>
+            <label for="question">Add a new question:</label>
+            <input type="text" id="question">
+            <button id="add">Add question</button>
+        </p>
+        <ul id="questions"></ul>
+        <div id="predicted"></div>
+    </main>
     <script>
         // DOM VARIABLES
         const main        = document.querySelector("main");
