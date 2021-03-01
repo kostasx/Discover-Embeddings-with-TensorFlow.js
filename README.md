@@ -16,4 +16,6 @@
 
 ---
 
+Make sure to *Watch* this repository and get notified about any updates.
+
 Questions? Comments? Requests? Feel free to open an [Issue on this repo](https://github.com/kostasx/Discover-Embeddings-with-TensorFlow.js/issues).
