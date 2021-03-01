@@ -82,7 +82,7 @@
             <!-- INTRO -->
             <section>
                 <p class="small">A Gentle Introduction to</p>
-                <h2>Calculating Text Similarity<br>with <strong>Machine Learning</strong></h2>
+                <h2>Word &amp; Sentence Embeddings<br>in <strong>Machine Learning</strong></h2>
                 <p class="small">By Kostas Minaidis</p>
             </section>
 
@@ -127,8 +127,9 @@
             <!-- NLP with ML -->
             <section>
                 <section>
-                    <h2>Understanding Natural Language<br>with <strong>Machine Learning</strong></h2>
-                    <img src="img/undraw_Modern_life_re_8pdp.svg" width="300" alt="">
+                    <h6>Understanding Natural Language using</h6>
+                    <h2><strong>Machine Learning</strong></h2>
+                    <img src="img/undraw_Modern_life_re_8pdp.svg" width="250" alt="">
                 </section>
                 <section>
                     <h6>Processing and Understanding<br>Natural Language <em>(Pre-ML Era)</em></h6>
@@ -253,7 +254,7 @@
                             <td class="border">together</td>
                             <td>
                                 <p class="small">
-                                    <strong>&ltrif; Vocabulary</strong>
+                                    <strong style="font-size: 1rem;">&ltrif; Vocabulary</strong>
                                 </p>
                             </td>
                         </tr>
@@ -544,9 +545,13 @@
 					<h6>More Embeddings:</h6>
 					<h2>Sentence &amp; Document Embeddings</h2>
 				</section>
+
 				<section>
 					<p class="small">Following the success and popularity of Word Embeddings, similar algorithms were applied for both text sentences and documents which yielded equally successful results.</p>
+                    <img width="70%" src="img/Sentence_Embeddings.png" alt="">
 				</section>
+
+                <!-- Universal Sentence Encoder -->
                 <section>
                     <h6>Universal Sentence Encoder</h6>
                     <p class="fragment small"><em>&quot;The Universal Sentence Encoder (Cer et al., 2018) (USE) is a model that encodes text into 512-dimensional embeddings.&quot;</em></p>
@@ -589,12 +594,6 @@
                         <li>What is your favorite color?</li>
                         <li>When should I change my phone battery?</li>
                     </ul>
-                    <p class="fragment">
-						<strong class="xs">
-							Read More
-							<br>&dtrif;
-						</strong>
-					</p>					
                 </section>
                 
                 <!-- USE Demo #3 -->
@@ -604,7 +603,24 @@
                     </h6>
                     <h6 class="fragment">Real-life Use Case:<br>Improving Question Answering Systems</h6>
                     <p class="small fragment semi">
-                        <a target="_blank" href="https://kostasx.github.io/Discover-Embeddings-with-TensorFlow.js/tfjs-use-questions.html">Live Demo</a><a target="_blank" href="https://github.com/kostasx/Discover-Embeddings-with-TensorFlow.js/blob/main/tfjs-use-questions.html"> | Code</a>
+                        <a target="_blank" href="https://kostasx.github.io/Discover-Embeddings-with-TensorFlow.js/tfjs-embeddings.html">Live Demo</a><a target="_blank" href="https://github.com/kostasx/Discover-Embeddings-with-TensorFlow.js/blob/main/tfjs-embeddings.html"> | Code</a>
+                    </p>
+                    <br>
+                    <h6 class="small fragment">Improvements?</h6>
+                    <p class="small fragment">Use a Paraphrasing model to add more questions to the mix: 
+                        <br><a href="https://colab.research.google.com/github/ramsrigouthamg/Paraphrase-any-question-with-T5-Text-To-Text-Transfer-Transformer-/blob/master/t5-pretrained-question-paraphraser.ipynb">Google Colab</a>
+                        <a href="https://colab.research.google.com/drive/1485nyRfkydg9cYWziOQCoDQfVQK6lGKW?usp=sharing"> | Google Colab with FAQ</a>
+                    </p>
+                </section>
+
+                <!-- USE Demo #4 -->
+                <section>
+                    <h6>
+                        <strong>Demo time:</strong>
+                    </h6>
+                    <h6 class="fragment">Toxicity Checker</h6>
+                    <p class="small fragment semi">
+                        <a target="_blank" href="https://kostasx.github.io/Discover-Embeddings-with-TensorFlow.js/tfjs-toxicity.html">Live Demo</a><a target="_blank" href="https://github.com/kostasx/Discover-Embeddings-with-TensorFlow.js/blob/main/tfjs-toxicity.html"> | Code</a><a href="https://codepen.io/kostasx/full/YzWpYXb"> | Codepen</a>
                     </p>
                     <p class="fragment">
 						<strong class="xs">
@@ -617,7 +633,7 @@
                 <!-- WHERE TO GO FROM HERE? -->
                 <section>
                     <h2>What's next?</h2>
-                    <ul class="small">
+                    <ul class="xs">
                         <li class="fragment">Try the USE <a href="https://github.com/tensorflow/tfjs-models/tree/master/universal-sentence-encoder#universal-sentence-encoder-for-question-answering">QnA model</a></li>
                         <li class="fragment">Create desktop applications (using Electron.JS) for text manipulation and natural language processing (Grammarly?)</li>
                         <li class="fragment">Train your own models on any language you want and on any topic you like.</li>
@@ -631,6 +647,8 @@
 					<h6>References:</h6>
 					<ul class="xs">
 						<li><a href="https://www.analyticsvidhya.com/blog/2020/03/pretrained-word-embeddings-nlp/">An Essential Guide to Pretrained Word Embeddings for NLP Practitioners</a></li>
+                        <li><a href="https://engineering.talkdesk.com/what-are-word-embeddings-and-why-are-they-useful-a45f49edf7ab">What are Word Embeddings and why are they useful?</a></li>
+                        <li><a href="https://blog.floydhub.com/automate-customer-support-part-one/#word-embeddings-the-power-of-context">Word embeddings: the power of context</a></li>
 					</ul>
 				</section>
 			</section>
